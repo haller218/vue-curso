@@ -1,7 +1,8 @@
 <template>
   <div class="corpo">
-    
-    
+
+    <input type="search" class="filtro" v-on:input="filtro = $event.target.value" placeholder="filtre por parte do titulo">    
+    {{ filtro }}
     <h2 class="centralizado">{{ titulo }}</h2>
 
     <ul class="lista-fotos">
@@ -29,7 +30,8 @@ export default {
 
     return {
       titulo: 'Alurapic',
-      fotos: []
+      fotos: [],
+      filtro: ''
     }
   },
 
@@ -74,4 +76,11 @@ export default {
 
   width: 100%;
 }
+
+.filtro {
+
+  display: block;
+  width: 100%;
+}
+
 </style>
