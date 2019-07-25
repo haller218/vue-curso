@@ -2,11 +2,11 @@
   <div class="corpo">
 
     <input type="search" class="filtro" v-on:input="filtro = $event.target.value" placeholder="filtre por parte do titulo">    
-    {{ filtro }}
+
     <h2 class="centralizado">{{ titulo }}</h2>
 
     <ul class="lista-fotos">
-      <li class="lista-fotos-item" v-for="foto of fotos">
+      <li class="lista-fotos-item" v-for="foto of fotoComFiltro">
     
         <meu-painel :titulo="foto.titulo">
           <img class="image-responsiva":src="foto.url" :alt="foto.titulo">
@@ -32,6 +32,22 @@ export default {
       titulo: 'Alurapic',
       fotos: [],
       filtro: ''
+    }
+  },
+
+  computed: {
+
+    fotoComFiltro () {
+
+        /*** filtras */
+      if (this.filtro) {
+
+        let exp = new RegExp(this.filtro.trim(), 'i')
+        return this.fotos.filter(foto => exp.test(foto.titulo))
+      } else {
+
+        return this.fotos
+      }
     }
   },
 
