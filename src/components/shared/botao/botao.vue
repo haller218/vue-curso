@@ -1,16 +1,29 @@
 <template>
-    <button @click="disparaAcao()" class="botao botao-perigo" type="tipo">{{ rotulo }}</button>    
+    <button @click="disparaAcao()" class='botao' :class="estiloDoBotao" type="tipo">{{ rotulo }}</button>    
 </template>
 
 <script>
 
 export default {
-    props: ['tipo','rotulo'],
+    props: ['tipo','rotulo','confirmacao', 'estilo'],
     methods: {
 
         disparaAcao() {
-            if (confirm('conforma operacao?'))
-                this.$emit('botaoAtivado')
+            console.log(typeof(this.confirmacao))
+            if (this.confirmacao){
+                if (confirm('conforma operacao?')){
+                    this.$emit('botaoAtivado')
+                }
+                return
+            }
+            this.$emit('botaoAtivado')
+        }
+    },
+    computed: {
+
+        estiloDoBotao() {
+            if((this.estilo == 'padrao') || !this.estilo) return 'botao-padrao'
+            if(this.estilo == 'perigo') return 'botao-perigo'
         }
     }
 }
