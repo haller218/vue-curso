@@ -1,5 +1,7 @@
 <template>
+
     <h2 class="centralizado">Cadastro</h2>    
+    
 </template>
 
 <script>

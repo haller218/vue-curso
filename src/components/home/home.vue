@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre por parte do titulo">    
 
     <h2 class="centralizado">{{ titulo }}</h2>
@@ -20,8 +19,8 @@
 
 <script>
 
-import Painel from './components/shared/painel/Painel.vue'
-import ImagemResponsiva from './components/shared/imagem-responsiva/Imagem-responsiva.vue'
+import Painel from '../shared/painel/Painel.vue'
+import ImagemResponsiva from '../shared/imagem-responsiva/imagem-responsiva.vue'
 
 export default {
 

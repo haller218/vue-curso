@@ -1,6 +1,7 @@
 <template>
   <div class="corpo">
-    /* hora tem que exibir um componente, hora outro.
+
+    <router-view></router-view>
 
   </div>
 </template>
