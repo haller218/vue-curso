@@ -17,7 +17,12 @@ import { routes } from '../../../routes'
 
 export default {
     
-    props: ['rotas']
+    props: {
+        rotas: {
+            type: Array,
+            required: true
+        }
+    }
 }
 </script>
 
