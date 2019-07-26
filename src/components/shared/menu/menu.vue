@@ -1,20 +1,23 @@
 <template>
     <nav>
         <ul>
-            <li>
-                <router-link to="/">Home</router-link>
-            </li>
-            <li>
-                <router-link to="/cadastro">Cadastro</router-link>
+            <li v-for="rota in rotas">
+                <router-link :to="rota.path ? rota.path : '/'">
+                    {{ rota.titulo }}
+                </router-link>
             </li>
         </ul>
-    </nav>
+     </nav>
 </template>
 
 
 <script>
+
+import { routes } from '../../../routes'
+
 export default {
     
+    props: ['rotas']
 }
 </script>
 
