@@ -1,6 +1,6 @@
 <template>
   <div class="corpo">
-
+    <meu-menu></meu-menu>
     <router-view></router-view>
 
   </div>
@@ -8,8 +8,13 @@
 
 <script>
 
+import Menu from './components/shared/menu/menu.vue'
+
 export default { 
 
+  components: {
+    'meu-menu': Menu
+  }
 }
 </script>
 
