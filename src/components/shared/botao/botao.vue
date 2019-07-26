@@ -23,7 +23,7 @@ export default {
         disparaAcao() {
             console.log(typeof(this.confirmacao))
             if (this.confirmacao){
-                if (confirm('conforma operacao?')){
+                if (confirm('confirma operacao?')){
                     this.$emit('botaoAtivado')
                 }
                 return

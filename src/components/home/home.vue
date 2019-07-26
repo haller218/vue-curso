@@ -8,7 +8,7 @@
       <li class="lista-fotos-item" v-for="foto of fotoComFiltro">
     
         <meu-painel :titulo="foto.titulo">
-          <imagem-responsiva :url="foto.url" :titulo="foto.titulo"/>
+          <imagem-responsiva v-meu-transform="{ incremento: 15, animate: true }" :url="foto.url" :titulo="foto.titulo"/>
           <meu-botao 
             tipo="Botton" 
             rotulo="REMOVER" 
@@ -28,6 +28,7 @@
 import Painel from '../shared/painel/Painel.vue'
 import ImagemResponsiva from '../shared/imagem-responsiva/imagem-responsiva.vue'
 import Botao from '../shared/botao/botao.vue'
+
 
 export default {
 
