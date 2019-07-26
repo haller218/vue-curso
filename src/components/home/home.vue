@@ -2,14 +2,14 @@
   <div>
     <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre por parte do titulo">    
 
-    <h2 class="centralizado">{{ titulo }}</h2>
+    <h2 @click="remove()" class="centralizado">{{ titulo }}</h2>
 
     <ul class="lista-fotos">
       <li class="lista-fotos-item" v-for="foto of fotoComFiltro">
     
         <meu-painel :titulo="foto.titulo">
           <imagem-responsiva :url="foto.url" :titulo="foto.titulo"/>
-          <meu-botao tipo="Botton" rotulo="REMOVER" />
+          <meu-botao tipo="Botton" rotulo="REMOVER" @botaoAtivado="remove(foto)"/>
         </meu-painel>
            
       </li>
@@ -55,6 +55,14 @@ export default {
         return this.fotos
       }
     }
+  },
+
+  methods: {
+
+      remove(foto) {
+
+        alert('Remover foto ' + foto.titulo)
+      }
   },
 
   created() {
