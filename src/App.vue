@@ -1,102 +1,24 @@
 <template>
   <div class="corpo">
+    /* hora tem que exibir um componente, hora outro.
 
-    <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre por parte do titulo">    
-
-    <h2 class="centralizado">{{ titulo }}</h2>
-
-    <ul class="lista-fotos">
-      <li class="lista-fotos-item" v-for="foto of fotoComFiltro">
-    
-        <meu-painel :titulo="foto.titulo">
-          <img class="image-responsiva":src="foto.url" :alt="foto.titulo">
-        </meu-painel>
-           
-      </li>
-    </ul>
   </div>
 </template>
 
 <script>
-import Painel from './components/shared/painel/Painel.vue'
-export default {
 
-  components: {
+export default { 
 
-    'meu-painel': Painel
-  },
-
-  data(){
-
-    return {
-      titulo: 'Alurapic',
-      fotos: [],
-      filtro: ''
-    }
-  },
-
-  computed: {
-
-    fotoComFiltro () {
-
-        /*** filtras */
-      if (this.filtro) {
-
-        let exp = new RegExp(this.filtro.trim(), 'i')
-        return this.fotos.filter(foto => exp.test(foto.titulo))
-      } else {
-
-        return this.fotos
-      }
-    }
-  },
-
-  created() {
-
-    this.$http.get('http://127.0.0.1:3000/v1/fotos')
-    .then( r => {
-
-      r.json().then( rs => {
-
-        this.fotos = rs
-      }, errs => console.log(errs))
-    }, err => {
-      
-      console.log("ERRO")
-      console.log ( err ) 
-    });
-  }
 }
 </script>
 
 <style>
+
 .corpo {
+
   font-family: Helvetica,Arial, sans-serif;
   width: 96%;
   margin: 0 auto;
-}
-
-.centralizado {
-  text-align: center
-}
-
-.lista-fotos {
-  list-style: none;
-}
-
-.lista-fotos .lista-fotos-item {
-  display: inline;
-}
-
-.image-responsiva {
-
-  width: 100%;
-}
-
-.filtro {
-
-  display: block;
-  width: 100%;
 }
 
 </style>
