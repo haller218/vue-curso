@@ -1,5 +1,8 @@
 <template>
   <div>
+
+    <p class="centralizado" v-show="mensagem">{{ mensagem }}</p>
+
     <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre por parte do titulo">    
 
     <h2 @click="remove()" class="centralizado">{{ titulo }}</h2>
@@ -68,13 +71,23 @@ export default {
 
       remove(foto) {
 
-        alert('Remover foto ' + foto.titulo)
+        this.$http
+          .delete(`http://localhost:3000/v1/fotos/${foto._id}`)
+          .then( res => {
+
+            this.mensagem = "Foto Removida Com Sucesso"
+          }, err => {
+
+            this.mensagem =  "Não foi possivel remover a foto"
+            console.log(err)
+          } )
+
       }
   },
 
   created() {
 
-    this.$http.get('http://127.0.0.1:3000/v1/fotos')
+    this.$http.get('http://localhost:3000/v1/fotos')
     .then( r => {
 
       r.json().then( rs => {

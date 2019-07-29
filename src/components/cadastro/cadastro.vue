@@ -27,7 +27,7 @@
 
             <div class="centralizado">
                 <meu-botao rotulo="GRAVAR" tipo="submit"></meu-botao>
-                <routerlink to="/">
+                <routerlink to="/home">
                 <meu-botao rotulo="VOLTAR" tipo="button"></meu-botao>
                 </routerlink><a/>
             </div>
@@ -41,6 +41,7 @@
 
 import ImagemResponsiva from '../shared/imagem-responsiva/imagem-responsiva.vue'
 import Botao from '../shared/botao/botao.vue'
+import Foto from '../../domain/foto/foto.js'
 
 export default {
     
@@ -53,25 +54,18 @@ export default {
 
         return {
 
-            foto: {
-                titulo: '',
-                url: '',
-                descricao: ''
-            }
+            foto: new Foto ()
         }
     },
     methods: {
 
         grava() {
 
-            console.log("Enviando dados para API")
-            console.log(this.foto)
-            this.foto =  {
-                titulo: '',
-                url: '',
-                descricao: ''
-            }
-
+            this.$http
+                .post('http://localhost:3000/v1/fotos', this.foto)
+                .then( res => {
+                    this.foto = new Foto ()
+                }, err => console.log(new Error ('erro in '+this.foto)) )
         }
     }
 }
