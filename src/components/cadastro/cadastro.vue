@@ -2,29 +2,36 @@
 
     <div>
         <h1 class="centralizado">Cadastro</h1>
-        <h2 class="centralizado"></h2>
+        <h2 class="centralizado">{{ foto.titulo }}</h2>
 
-        <form>
+        <form @submit.prevent="grava()">
             <div class="controle">
                 <label for="titulo">TITULO</label>
-                <input id="titulo" autocomplete="off">
+                <input id="titulo" autocomplete="off"
+                    @input="foto.titulo = $event.target.value" 
+                    :value="foto.titulo">
             </div>
 
             <div class="controle">
                 <label for="url">URL</label>
-                <input id="url" autocomplete="off">
+                <input id="url" autocomplete="off" 
+                    @input="foto.url = $event.target.value"
+                    :value="foto.url">
                 <imagem-responsiva/>
             </div>
 
             <div class="controle">
                 <label for="descricao">DESCRICAO</label>
-                <textarea id="descricao" autocomplete="off"></textarea>
+                <textarea id="descricao" autocomplete="off" 
+                    @input="foto.descricao = $event.target.value"
+                    :value="foto.descricao">
+                </textarea>
             </div>
 
             <div class="centralizado">
                 <meu-botao rotulo="GRAVAR" tipo="submit"></meu-botao>
                 <routerlink to="/">
-                <meu-botao rotulo="VOLTAR" tipo="button"/>
+                <meu-botao rotulo="VOLTAR" tipo="button"></meu-botao>
                 </routerlink><a/>
             </div>
 
@@ -44,6 +51,30 @@ export default {
 
         'imagem-responsiva': ImagemResponsiva,
         'meu-botao': Botao
+    }, 
+    data (  ) {
+
+        return {
+
+            foto: {
+                titulo: '',
+                url: '',
+                descricao: ''
+            }
+        }
+    },
+    methods: {
+
+        grava() {
+
+            console.log("Enviando dados para API")
+            this.foto =  {
+                titulo: '',
+                url: '',
+                descricao: ''
+            }
+
+        }
     }
 }
 </script>
@@ -70,9 +101,5 @@ export default {
     font-size: inherit;
     border-radius: 5px;
 }
-
-
-
-
 
 </style>
