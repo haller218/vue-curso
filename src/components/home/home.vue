@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <p class="centralizado" v-show="mensagem">{{ mensagem }}</p>
+    <p class="centralizado" v-show="mensage">{{ mensage }}</p>
 
     <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre por parte do titulo">    
 
@@ -47,7 +47,8 @@ export default {
     return {
       titulo: 'Alurapic',
       fotos: [],
-      filtro: ''
+      filtro: '',
+      mensage: ''
     }
   },
 
@@ -71,34 +72,34 @@ export default {
 
       remove(foto) {
 
-        this.$http
-          .delete(`http://localhost:3000/v1/fotos/${foto._id}`)
+        this.resource
+          .delete({id: 'foto._id'})
           .then( res => {
 
-            this.mensagem = "Foto Removida Com Sucesso"
+            this.mensage = "Foto Removida Com Sucesso"
           }, err => {
 
-            this.mensagem =  "Não foi possivel remover a foto"
+            this.mensage =  "Não foi possivel remover a foto"
             console.log(err)
           } )
-
       }
   },
 
   created() {
 
-    this.$http.get('http://localhost:3000/v1/fotos')
-    .then( r => {
+    this.resource = this.$resource('v1/fotos{/id}')
 
-      r.json().then( rs => {
+    this.resource
+      .query()
+      .then( r => {
 
-        this.fotos = rs
-      }, errs => console.log(errs))
-    }, err => {
-      
-      console.log("ERRO")
-      console.log ( err ) 
-    });
+        r.json().then( rs => this.fotos = rs, 
+                    errs => console.log(errs))
+      }, err => {
+        
+        console.log("ERRO")
+        console.log ( err ) 
+      });
   }
 }
 </script>
