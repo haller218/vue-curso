@@ -11,7 +11,8 @@
       <li class="lista-fotos-item" v-for="foto of fotoComFiltro">
     
         <meu-painel :titulo="foto.titulo">
-          <imagem-responsiva v-meu-transform:scale.animate="1.2" :url="foto.url" :titulo="foto.titulo"/>
+          <imagem-responsiva v-meu-transform:scale.animate="1.2" 
+                :url="foto.url" :titulo="foto.titulo"/>
           <meu-botao 
             tipo="Botton" 
             rotulo="REMOVER" 
@@ -73,7 +74,7 @@ export default {
       remove(foto) {
 
         this.resource
-          .delete({id: 'foto._id'})
+          .delete({id: foto._id})
           .then( res => {
 
             this.mensage = "Foto Removida Com Sucesso"
@@ -87,7 +88,7 @@ export default {
 
   created() {
 
-    this.resource = this.$resource('v1/fotos{/id}')
+    this.resource = this.$resource(`v1/fotos{/id}`)
 
     this.resource
       .query()
