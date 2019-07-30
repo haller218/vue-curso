@@ -76,7 +76,8 @@ export default {
         this.resource
           .delete({id: foto._id})
           .then( res => {
-
+            let indice = this.fotos.indexOf(foto)
+            this.fotos.splice(indice, 1)
             this.mensage = "Foto Removida Com Sucesso"
           }, err => {
 
@@ -92,10 +93,10 @@ export default {
 
     this.resource
       .query()
-      .then( r => {
-
-        r.json().then( rs => this.fotos = rs, 
-                    errs => console.log(errs))
+      .then( res => {
+        res.json()
+        .then( fotos => this.fotos = fotos, 
+        errs => console.log(errs))
       }, err => {
         
         console.log("ERRO")
