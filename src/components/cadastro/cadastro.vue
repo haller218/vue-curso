@@ -27,9 +27,9 @@
 
             <div class="centralizado">
                 <meu-botao rotulo="GRAVAR" tipo="submit"></meu-botao>
-                <routerlink to="/home">
+                <router-link to="/">
                 <meu-botao rotulo="VOLTAR" tipo="button"></meu-botao>
-                </routerlink><a/>
+                </router-link><a/>
             </div>
 
         </form>

@@ -6,8 +6,3 @@ export const routes = [
     { path: '/cadastro', component: Cadastro, titulo: "Cadastro" }
 ];
 
-
-
-
-
-
